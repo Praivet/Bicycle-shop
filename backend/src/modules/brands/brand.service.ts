@@ -1,6 +1,6 @@
 import { Brand } from "./brand.model";
 
-export class BicycleService {
+export class BrandService {
 
   static async findAll() {
     return Brand.findAll({
@@ -28,7 +28,7 @@ export class BicycleService {
     data: {
       name?: string;
     }
-  ) {
+  ) { 
     return brand.update(data);
   }
 

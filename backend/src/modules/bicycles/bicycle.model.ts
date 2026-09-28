@@ -14,8 +14,6 @@ export class Bicycle extends Model<
 > {
   declare id: CreationOptional<number>;
 
-  declare brand: string;
-
   declare model: string;
 
   declare description: string | null;
@@ -34,13 +32,7 @@ export class Bicycle extends Model<
 Bicycle.init(
   {
 
-    brandId: {
-      type: DataTypes.INTEGER.UNSIGNED,
-      allowNull: false,
-      references: { model: "brands", key: "id" },
-      onUpdate: "CASCADE",
-      onDelete: "RESTRICT",
-    },
+    
     
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
@@ -48,11 +40,7 @@ Bicycle.init(
       primaryKey: true,
     },
 
-    brand: {
-      type: DataTypes.STRING(150),
-      allowNull: false,
-    },
-
+  
     model: {
       type: DataTypes.STRING(150),
       allowNull: false,
@@ -77,6 +65,14 @@ Bicycle.init(
     createdAt: DataTypes.DATE,
 
     updatedAt: DataTypes.DATE,
+
+    brandId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: { model: "brands", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
+    },
   },
   {
     sequelize,
