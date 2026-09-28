@@ -12,6 +12,9 @@ To work through the project as a learning exercise, use the [learning branch](ht
 
 ## Setup and development
 
+### FIRST OF ALL
+https://documenter.getpostman.com/view/58320207/2sBYB4LSC7
+
 ### 1. Prerequisites
 
 Install Git, Node.js with npm (a version compatible with Vite, such as Node.js 22.12+), and MySQL. Make sure the MySQL server is running before starting the backend.
