@@ -1,13 +1,18 @@
 import { app } from "./app";
 import { sequelize } from "./config/database";
 import { env } from "./config/env";
+import { defineassociations } from "./models/associations";
 
 // Importamos los modelos para que Sequelize los registre.
 import "./modules/bicycles/bicycle.model";
 import "./modules/brands/brand.model";
 
+
+
 async function startServer() {
   try {
+
+    defineassociations();
 
     await sequelize.authenticate();
 
