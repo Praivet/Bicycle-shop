@@ -27,10 +27,21 @@ export class Bicycle extends Model<
   declare createdAt: CreationOptional<Date>;
 
   declare updatedAt: CreationOptional<Date>;
+
+  declare brandId: number;
 }
 
 Bicycle.init(
   {
+
+    brandId: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: { model: "brands", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
+    },
+    
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
