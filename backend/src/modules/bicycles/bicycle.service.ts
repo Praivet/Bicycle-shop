@@ -1,3 +1,4 @@
+import { BicycleDetail } from "../bicycle-details/bicycle-detail.model";
 import { Brand } from "../brands/brand.model";
 import { Bicycle } from "./bicycle.model";
 
@@ -8,6 +9,21 @@ export class BicycleService {
       order: [["id", "ASC"]],
     });
   }
+
+  static async findAllEagerlyByFrameMaterial(frameMaterial: string) {
+  return Bicycle.findAll({
+    include: [
+      {
+        model: BicycleDetail,
+        as: 'detail',
+        where: {
+          frameMaterial
+        }
+      }
+    ],
+    order: [["id", "ASC"]]
+  });
+}
 
 
   static async findById(id: number) {

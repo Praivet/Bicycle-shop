@@ -12,8 +12,9 @@ To work through the project as a learning exercise, use the [learning branch](ht
 
 ## Setup and development
 
-### FIRST OF ALL
+### FIRST OF ALL POSTMAN DOC
 https://documenter.getpostman.com/view/58320207/2sBYB4LSC7
+
 
 ### 1. Prerequisites
 

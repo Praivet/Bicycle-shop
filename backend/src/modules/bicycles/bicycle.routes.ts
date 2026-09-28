@@ -7,6 +7,8 @@ router.get("/", BicycleController.getAll);
 
 router.get("/eagerly/:id", BicycleController.getEagerlyById);
 
+router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
+
 router.get("/:id", BicycleController.getById);
 
 router.post("/", BicycleController.create);
