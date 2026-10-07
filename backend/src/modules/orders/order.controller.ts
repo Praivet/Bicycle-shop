@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { OrderService } from "./order.service";
 
-export class BrandController {
+export class OrderController {
 
   static async getAll(
     req: Request,
@@ -60,7 +60,7 @@ export class BrandController {
         return;
       }
 
-      const brand = await OrderService.create({
+      const order = await OrderService.create({
          customerId,
          orderDate,
          status,
@@ -84,22 +84,22 @@ export class BrandController {
     try {
       const id = Number(req.params.id);
 
-      const brand = await BrandService.findById(id);
+      const order = await OrderService.findById(id);
 
-      if (!brand) {
+      if (!order) {
         res.status(404).json({
-          message: "Marca no encontrada",
+          message: "Pedido no encontrado",
         });
 
         return;
       }
 
-      const updatedBrand = await BrandService.update(
-        brand,
+      const updatedOrder = await OrderService.update(
+        order,
         req.body
       );
 
-      res.json(updatedBrand);
+      res.json(updatedOrder);
 
     } catch (error) {
       next(error);
@@ -115,17 +115,17 @@ export class BrandController {
     try {
       const id = Number(req.params.id);
 
-      const brand = await BrandService.findById(id);
+      const order = await OrderService.findById(id);
 
-      if (!brand) {
+      if (!order) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Pedido no encontrado",
         });
 
         return;
       }
 
-      await BrandService.delete(brand);
+      await OrderService.delete(order);
 
       res.status(204).send();
 

@@ -17,14 +17,14 @@ export class CustomerController {
     }
   }
 
-  static async GetCustomerWithOrderByNameSearch(
+  static async getCustomersWithOrdersByNameSearch(
     req: Request,
     res: Response,
     next: NextFunction
   ) {
     try {
         const nameSearch = String(req.params.name_search);
-        const customers = await CustomerService.findCustomerWithOrderByNameSearch(nameSearch);
+        const customers = await CustomerService.findCustomersWithOrdersByNameSearch(nameSearch);
 
         res.json(customers)
     } catch (error) {
@@ -75,7 +75,7 @@ export class CustomerController {
         return;
       }
 
-      const brand = await CustomerService.create({
+      const customer = await CustomerService.create({
          name,
         createdAt,
         email,
