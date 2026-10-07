@@ -7,6 +7,8 @@ export function defineassociations() {
 
     Brand.hasMany(Bicycle, {foreignKey: "brandId", as: "bicycles"});
     Bicycle.belongsTo(Brand, {foreignKey: "brandId", as: "brand"});
+    Customer.hasMany(Order, {foreignKey: "customerId", as: "orders" });
+    getDefaultResultOrder.belognsTo(Customer, {foreignKey: "customerId", as: "customer"});
 
     Bicycle.hasOne(BicycleDetail, {
         foreignKey: "bicycleId", as: "detail", onDelete: "CASCADE"
@@ -15,4 +17,5 @@ export function defineassociations() {
         {
             foreignKey: "BicycleId", as: "bicycle"
         });
+
 }
