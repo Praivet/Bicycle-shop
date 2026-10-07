@@ -1,18 +1,26 @@
 import { Order } from "./order.model";
-
+import { Customer} from "../customers/customer.model"
 type statusTypes = "pending" | "paid" | "shipped" | "cancelled";
 
 export class OrderService {
 
-    static async findAll() {
+    static async findByCustomerId(customerId: number) {
         return Order.findAll({
-            order: [["id", "ASC"]],
+            where: { customerId},
+            include: [{ 
+                model: Customer, 
+                
+                as: "customer", 
+                attributes: ["id", "name", "email"]}],
+            order: [["orderDate", "DESC"]],
         });
     }
 
 
     static async findById(id: number) {
-        return Order.findByPk(id);
+        return Order.findAll({
+            order: [["id", "ASC"]],
+        });
     }
 
 
