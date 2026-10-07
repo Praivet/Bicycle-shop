@@ -147,4 +147,15 @@ export class CustomerController {
       next(error);
     }
   }
+
+  static async getOrdersByCustomerName(req: Request, res: Response, next: NextFunction) {
+        try {
+            const nameSearch = String(req.params.name_search);
+            const customers = await CustomerService.findCustomersWithOrdersByNameSearch(nameSearch);
+            res.json(customers);
+        } catch (error) {
+            next(error);
+        }
+    }
+    
 }

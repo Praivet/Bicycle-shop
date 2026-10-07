@@ -17,7 +17,6 @@ export class OrderController {
     }
   }
 
-
   static async getById(
     req: Request,
     res: Response,
@@ -25,12 +24,11 @@ export class OrderController {
   ) {
     try {
       const id = Number(req.params.id);
-
-      const order= await OrderService.findById(id);
+      const order = await OrderService.findById(id);
 
       if (!order) {
         res.status(404).json({
-          message: "pedido no enontrado",
+          message: "Order not found",
         });
 
         return;
@@ -44,28 +42,53 @@ export class OrderController {
   }
 
 
+  static async getByCustomerId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const customerId = Number(req.params.id);
+      const orders = await OrderService.findByCustomerId(customerId);
+
+      if (!orders) {
+        res.status(404).json({
+          message: "Orders not found",
+        });
+
+        return;
+      }
+
+      res.json(orders);
+
+    } catch (error) {
+      next(error);
+    }
+  }
+
+
   static async create(
     req: Request,
     res: Response,
     next: NextFunction
   ) {
     try {
-      const {customerId, orderDate, status, createdAt, updatedAt } = req.body;
+      const { customerId, orderDate, status, createdAt, updatedAt } = req.body;
 
-      if (!customerId) {
+      if (!customerId === undefined) {
         res.status(400).json({
-          message: "el id del cliente es obligatorio",
+          message: "customerId is required",
         });
 
         return;
       }
 
       const order = await OrderService.create({
-         customerId,
-         orderDate,
-         status,
+        customerId,
+        orderDate,
+        status,
         createdAt,
-        updatedAt,
+        updatedAt
       });
 
       res.status(201).json(order);
@@ -83,21 +106,17 @@ export class OrderController {
   ) {
     try {
       const id = Number(req.params.id);
-
       const order = await OrderService.findById(id);
 
       if (!order) {
         res.status(404).json({
-          message: "Pedido no encontrado",
+          message: "Order not found",
         });
 
         return;
       }
 
-      const updatedOrder = await OrderService.update(
-        order,
-        req.body
-      );
+      const updatedOrder = await OrderService.update(order,req.body);
 
       res.json(updatedOrder);
 
@@ -114,12 +133,11 @@ export class OrderController {
   ) {
     try {
       const id = Number(req.params.id);
-
       const order = await OrderService.findById(id);
 
       if (!order) {
         res.status(404).json({
-          message: "Pedido no encontrado",
+          message: "Order not found",
         });
 
         return;

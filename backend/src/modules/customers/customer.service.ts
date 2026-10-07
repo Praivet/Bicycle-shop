@@ -1,9 +1,8 @@
 import { Customer } from "./customer.model";
+import { Op } from "sequelize";
+import { Order } from "../orders/order.model";
 
 export class CustomerService {
-  static findCustomersWithOrdersByNameSearch(nameSearch: string) {
-    throw new Error("Method not implemented.");
-  }
 
   static async findAll() {
     return Customer.findAll({
@@ -20,25 +19,32 @@ export class CustomerService {
   static async create(data: {
     name: string;
     email: string;
-    createdAt? : Date;
-    updatedAt? : Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }) {
     return Customer.create(data);
   }
 
 
   static async update(
-    brand: Customer,
+    customer: Customer,
     data: {
-      name?: string;
-      email?: string;
+      name: string;
+      email: string;
     }
-  ) { 
-    return brand.update(data);
+  ) {
+    return customer.update(data);
   }
 
 
   static async delete(customer: Customer) {
     await customer.destroy();
+  }
+
+  static async findCustomersWithOrdersByNameSearch(nameSearch: string) {
+    return Customer.findAll({
+      where: { name: { [Op.like]: '%${nameSearch}%' } },
+      include: [{ model: Order, as: "orders", required: true }],
+    });
   }
 }

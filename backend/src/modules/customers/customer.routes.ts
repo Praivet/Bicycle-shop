@@ -13,4 +13,6 @@ router.put("/:id", CustomerController.update);
 
 router.delete("/:id", CustomerController.delete);
 
+router.get("/:name_search/orders", CustomerController.getOrdersByCustomerName);
+
 export default router;
