@@ -4,7 +4,7 @@ import brandRoutes from "../modules/brands/brand.routes";
 import BicycleDetailRoutes from "../modules/bicycle-details/bicycle-detail.routes";
 import CustomerRoutes from "../modules/customers/customer.routes";
 import OrderRoutes from "../modules/orders/order.routes";
-import OrderItemRoutes from "../modules/orders/order.routes";
+import OrderItemRoutes from "../modules/order-items/order-item.routes";
 
 const router = Router();
 

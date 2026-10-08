@@ -76,7 +76,7 @@ export class OrderItemController {
     try {
       const { orderId, bicycleId, quantity, unitPrice, createdAt, updatedAt } = req.body;
 
-      if (!orderId  || !bicycleId === undefined) {
+      if (!orderId === undefined) {
         res.status(400).json({
           message: "order Id or bicycle id is required",
         });
