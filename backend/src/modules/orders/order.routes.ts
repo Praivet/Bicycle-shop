@@ -5,6 +5,8 @@ const router = Router();
 
 router.get("/", OrderController.getAll);
 
+router.get("/cheap-heavy-bicycles", OrderController.getByCheapAndHeavyBicycles);
+
 router.get("/:id", OrderController.getById);
 
 router.post("/", OrderController.create);

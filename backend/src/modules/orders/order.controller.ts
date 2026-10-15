@@ -17,6 +17,20 @@ export class OrderController {
     }
   }
 
+  static async getByCheapAndHeavyBicycles(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const orders = await OrderService.findByBicycleCheapAndHeavy();
+
+      res.json(orders);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async getById(
     req: Request,
     res: Response,
@@ -116,7 +130,7 @@ export class OrderController {
         return;
       }
 
-      const updatedOrder = await OrderService.update(order,req.body);
+      const updatedOrder = await OrderService.update(order, req.body);
 
       res.json(updatedOrder);
 

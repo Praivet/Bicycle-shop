@@ -27,20 +27,22 @@ export class Bicycle extends Model<
   declare updatedAt: CreationOptional<Date>;
 
   declare brandId: number;
+
+  declare bicycleModelid: number;
 }
 
 Bicycle.init(
   {
 
-    
-    
+
+
     id: {
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
 
-  
+
     model: {
       type: DataTypes.STRING(150),
       allowNull: false,
@@ -73,6 +75,15 @@ Bicycle.init(
       onUpdate: "CASCADE",
       onDelete: "RESTRICT",
     },
+
+    bicycleModelid: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      references: { model: "bicycleModels", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
+    }
+
   },
   {
     sequelize,

@@ -4,21 +4,21 @@ import { BicycleService } from "./bicycle.service";
 export class BicycleController {
 
   static async getAllEagerlyByFrameMaterial(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
-  try {
-    const frameMaterial = String(req.params.frameMaterial);
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const frameMaterial = String(req.params.frameMaterial);
 
-    const bicycles = await BicycleService.findAllEagerlyByFrameMaterial(frameMaterial);
+      const bicycles = await BicycleService.findAllEagerlyByFrameMaterial(frameMaterial);
 
-    res.json(bicycles);
-  } catch (error) {
-    next(error);
+      res.json(bicycles);
+    } catch (error) {
+      next(error);
+    }
   }
-}
-
+  
   static async getEagerlyById(
     req: Request,
     res: Response,
@@ -39,6 +39,31 @@ export class BicycleController {
 
       res.json(bicycle);
 
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllEagerly(req: Request, res: Response, next: NextFunction) {
+  try {
+    const bicycles = await BicycleService.findAllEagerly();
+    res.json(bicycles);
+  } catch (error) {
+    next(error);
+  }
+}
+
+static async getByPriceGreaterThan(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+    const price = Number(req.params.price);
+
+      const bicycles = await BicycleService.findByPriceGreaterThan(price);
+
+      res.json(bicycles);
     } catch (error) {
       next(error);
     }
@@ -92,7 +117,7 @@ export class BicycleController {
     next: NextFunction
   ) {
     try {
-      const { brandId, model, description, price, stock } = req.body;
+      const { bicycleModelid, brandId, model, description, price, stock } = req.body;
 
       if (!brandId || !model || price === undefined) {
         res.status(400).json({
@@ -103,11 +128,12 @@ export class BicycleController {
       }
 
       const bicycle = await BicycleService.create({
-        brandId,
         model,
+        bicycleModelid,
         description,
         price,
         stock,
+        brandId,
       });
 
       res.status(201).json(bicycle);
