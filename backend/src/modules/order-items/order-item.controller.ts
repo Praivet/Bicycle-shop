@@ -18,6 +18,7 @@ export class OrderItemController {
     }
   }
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -68,6 +69,7 @@ export class OrderItemController {
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -78,7 +80,7 @@ export class OrderItemController {
 
       if (!orderId === undefined) {
         res.status(400).json({
-          message: "order Id or bicycle id is required",
+          message: "orderId and bicycleId are required",
         });
 
         return;
@@ -101,6 +103,7 @@ export class OrderItemController {
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -128,6 +131,7 @@ export class OrderItemController {
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,

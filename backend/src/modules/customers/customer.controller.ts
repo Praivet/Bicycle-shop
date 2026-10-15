@@ -33,6 +33,7 @@ export class CustomerController {
   }
 
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -45,7 +46,7 @@ export class CustomerController {
 
       if (!customer) {
         res.status(404).json({
-          message: "Cliente no encontrado",
+          message: "Customer not found",
         });
 
         return;
@@ -59,6 +60,7 @@ export class CustomerController {
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -69,7 +71,7 @@ export class CustomerController {
 
       if (!name) {
         res.status(400).json({
-          message: "el nombre es obligatorio",
+          message: "name is required",
         });
 
         return;
@@ -90,6 +92,7 @@ export class CustomerController {
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -102,7 +105,7 @@ export class CustomerController {
 
       if (!customer) {
         res.status(404).json({
-          message: "Cliente no encontrado",
+          message: "Customer not found",
         });
 
         return;
@@ -121,6 +124,7 @@ export class CustomerController {
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,
@@ -133,7 +137,7 @@ export class CustomerController {
 
       if (!customer) {
         res.status(404).json({
-          message: "Cliente no encontrado",
+          message: "Customer not found",
         });
 
         return;
@@ -148,6 +152,7 @@ export class CustomerController {
     }
   }
 
+  // :name_search comes from req.params (route /:name_search/orders).
   static async getOrdersByCustomerName(req: Request, res: Response, next: NextFunction) {
         try {
             const nameSearch = String(req.params.name_search);

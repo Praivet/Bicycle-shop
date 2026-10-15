@@ -13,4 +13,5 @@ router.put("/:id", BrandController.update);
 
 router.delete("/:id", BrandController.delete);
 
+// Do not forget the default export: index.ts imports it and breaks if it is missing.
 export default router;

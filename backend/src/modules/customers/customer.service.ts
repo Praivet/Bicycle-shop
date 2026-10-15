@@ -26,6 +26,7 @@ export class CustomerService {
   }
 
 
+  // Receives the instance already loaded by the controller (the 404 check is done there).
   static async update(
     customer: Customer,
     data: {
@@ -41,6 +42,7 @@ export class CustomerService {
     await customer.destroy();
   }
 
+  // required: true => INNER JOIN (only customers that have orders). Op.like uses % as wildcard.
   static async findCustomersWithOrdersByNameSearch(nameSearch: string) {
     return Customer.findAll({
       where: { name: { [Op.like]: '%${nameSearch}%' } },

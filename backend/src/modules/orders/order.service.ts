@@ -18,6 +18,7 @@ export class OrderService {
         return Order.findByPk(id);
     }
 
+    // 1:N eager query: the orders of one customer. 'attributes' = columns to select (like SELECT).
     static async findByCustomerId(customerId: number) {
         return Order.findAll({
             where: { customerId },
@@ -32,6 +33,9 @@ export class OrderService {
         });
     }
 
+    // Nested include: Order -> Bicycle (alias bicycles) -> BicycleDetail (alias detail).
+    // Each where goes in the include of the table that owns the column: price in Bicycle, weight in BicycleDetail.
+    // Op.lt = less than, Op.gt = greater than. No parameters: 100 and 20 are fixed by the statement.
     static findByBicycleCheapAndHeavy () {
         return Order.findAll ({
             include: [{

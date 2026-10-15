@@ -68,6 +68,7 @@ Bicycle.init(
 
     updatedAt: DataTypes.DATE,
 
+    // FK of 1:N Brand -> Bicycle. Must match the foreignKey in associations.ts.
     brandId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -76,6 +77,8 @@ Bicycle.init(
       onDelete: "RESTRICT",
     },
 
+    // FK of 1:N BicycleModel -> Bicycle. Same name as in associations.ts.
+    // references.model must equal the tableName of BicycleModel.
     bicycleModelid: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,

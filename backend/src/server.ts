@@ -17,12 +17,15 @@ import "./modules/bicycle-models/bicycle-model.model"
 async function startServer() {
   try {
 
+    // Associations must be defined after the models are imported and before sync().
     defineassociations();
 
     await sequelize.authenticate();
 
     console.log("Conexión con MySQL establecida.");
 
+    // sync() only creates MISSING tables. It does NOT add columns to existing ones:
+    // drop the table or use sync({ alter: true }) once after adding a new FK column.
     await sequelize.sync();
 
     console.log("Modelos sincronizados.");

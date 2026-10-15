@@ -18,6 +18,7 @@ export class BrandController {
   }
 
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -30,7 +31,7 @@ export class BrandController {
 
       if (!brand) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Brand not found",
         });
 
         return;
@@ -44,6 +45,7 @@ export class BrandController {
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -54,7 +56,7 @@ export class BrandController {
 
       if (!name) {
         res.status(400).json({
-          message: "el nombre es obligatorio",
+          message: "name is required",
         });
 
         return;
@@ -74,6 +76,7 @@ export class BrandController {
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -86,7 +89,7 @@ export class BrandController {
 
       if (!brand) {
         res.status(404).json({
-          message: "Marca no encontrada",
+          message: "Brand not found",
         });
 
         return;
@@ -105,6 +108,7 @@ export class BrandController {
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,
@@ -117,7 +121,7 @@ export class BrandController {
 
       if (!brand) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Brand not found",
         });
 
         return;

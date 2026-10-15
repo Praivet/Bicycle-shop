@@ -8,6 +8,7 @@ import {
 
 import { sequelize } from "../../config/database";
 
+// 'One' side of 1:N BicycleModel -> Bicycle. No FK here: the FK is in Bicycle.
 export class BicycleModel extends Model<
     InferAttributes<BicycleModel>,
     InferCreationAttributes<BicycleModel>
@@ -38,6 +39,7 @@ BicycleModel.init(
     {
         sequelize,
 
+        // tableName is what 'references.model' must point to in other models (here Bicycle).
         tableName: "bicycleModels",
 
         timestamps: true,

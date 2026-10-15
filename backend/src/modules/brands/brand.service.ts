@@ -23,6 +23,7 @@ export class BrandService {
   }
 
 
+  // Receives the instance already loaded by the controller (the 404 check is done there).
   static async update(
     brand: Brand,
     data: {

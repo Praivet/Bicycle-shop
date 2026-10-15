@@ -9,6 +9,7 @@ import bicycleModelRoutes from "../modules/bicycle-models/bicycle-model.routes";
 
 const router = Router();
 
+// Every new module must be mounted here (and its model imported in server.ts).
 router.use("/bicycles", bicycleRoutes);
 router.use("/brands", brandRoutes);
 router.use("/bicycle-details", BicycleDetailRoutes);

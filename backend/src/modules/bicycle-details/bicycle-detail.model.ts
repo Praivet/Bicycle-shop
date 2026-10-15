@@ -27,6 +27,7 @@ BicycleDetail.init(
       type: DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true },
+    // FK of 1:1 Bicycle -> BicycleDetail (one detail per bicycle). Same name as in associations.ts.
     bicycleId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false },

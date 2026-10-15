@@ -13,4 +13,5 @@ router.put("/:id", BicycleModelController.update);
 
 router.delete("/:id", BicycleModelController.delete);
 
+// Do not forget the default export: index.ts imports it and breaks if it is missing.
 export default router;

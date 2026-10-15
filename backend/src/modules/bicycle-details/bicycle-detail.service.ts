@@ -27,6 +27,7 @@ export class BicycleDetailService {
   }
 
 
+  // Receives the instance already loaded by the controller (the 404 check is done there).
   static async update(
     BicycleDetail: BicycleDetail,
     data: {

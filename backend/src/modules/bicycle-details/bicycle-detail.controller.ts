@@ -20,6 +20,7 @@ export class BicycleDetailController {
   }
 
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -32,7 +33,7 @@ export class BicycleDetailController {
 
       if (!BicycleDetail) {
         res.status(404).json({
-          message: "Detalles de bicicleta no encontrada",
+          message: "Bicycle detail not found",
         });
 
         return;
@@ -46,6 +47,7 @@ export class BicycleDetailController {
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -56,7 +58,7 @@ export class BicycleDetailController {
 
       if (!bicycleId) {
         res.status(400).json({
-          message: "el id es obligatorio",
+          message: "bicycleId is required",
         });
 
         return;
@@ -80,6 +82,7 @@ export class BicycleDetailController {
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -92,7 +95,7 @@ export class BicycleDetailController {
 
       if (!BicycleDetail) {
         res.status(404).json({
-          message: "Marca no encontrada",
+          message: "Bicycle detail not found",
         });
 
         return;
@@ -111,6 +114,7 @@ export class BicycleDetailController {
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,
@@ -123,7 +127,7 @@ export class BicycleDetailController {
 
       if (!BicycleDetail) {
         res.status(404).json({
-          message: "Detalles de bicicleta no encontrada",
+          message: "Bicycle detail not found",
         });
 
         return;

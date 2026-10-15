@@ -28,6 +28,8 @@ OrderItem.init(
       autoIncrement: true,
       primaryKey: true,
     },
+    // Join table of the N:M Order <-> Bicycle: it holds both FKs (orderId and bicycleId).
+    // Create the order and the bicycle first, then the order item (FK order).
     orderId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,

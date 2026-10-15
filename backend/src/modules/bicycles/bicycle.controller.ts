@@ -3,6 +3,7 @@ import { BicycleService } from "./bicycle.service";
 
 export class BicycleController {
 
+  // Param is a string (material name), so String() and no conversion to number.
   static async getAllEagerlyByFrameMaterial(
     req: Request,
     res: Response,
@@ -44,6 +45,7 @@ export class BicycleController {
     }
   }
 
+  // Eager endpoint without params: GET /api/bicycles/eagerly.
   static async getAllEagerly(req: Request, res: Response, next: NextFunction) {
   try {
     const bicycles = await BicycleService.findAllEagerly();
@@ -53,6 +55,7 @@ export class BicycleController {
   }
 }
 
+// Number(req.params.price): the name after ':' in the route is the name in req.params.
 static async getByPriceGreaterThan(
     req: Request,
     res: Response,
@@ -85,6 +88,7 @@ static async getByPriceGreaterThan(
   }
 
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -97,7 +101,7 @@ static async getByPriceGreaterThan(
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -111,6 +115,7 @@ static async getByPriceGreaterThan(
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -121,7 +126,7 @@ static async getByPriceGreaterThan(
 
       if (!brandId || !model || price === undefined) {
         res.status(400).json({
-          message: "brand, model y price son obligatorios",
+          message: "brandId, model and price are required",
         });
 
         return;
@@ -144,6 +149,7 @@ static async getByPriceGreaterThan(
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -156,7 +162,7 @@ static async getByPriceGreaterThan(
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;
@@ -175,6 +181,7 @@ static async getByPriceGreaterThan(
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,
@@ -187,7 +194,7 @@ static async getByPriceGreaterThan(
 
       if (!bicycle) {
         res.status(404).json({
-          message: "Bicicleta no encontrada",
+          message: "Bicycle not found",
         });
 
         return;

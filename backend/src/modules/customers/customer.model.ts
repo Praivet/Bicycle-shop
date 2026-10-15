@@ -8,6 +8,7 @@ import {
 
 import { sequelize } from "../../config/database";
 
+// 'One' side of 1:N Customer -> Order. No FK here: the FK (customerId) is in Order.
 export class Customer extends Model<
     InferAttributes<Customer>, InferCreationAttributes<Customer>
 > {

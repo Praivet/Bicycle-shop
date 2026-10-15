@@ -8,6 +8,7 @@ import {
 
 import { sequelize } from "../../config/database";
 
+// 'One' side of 1:N Brand -> Bicycle. No FK here: the FK (brandId) is in Bicycle.
 export class Brand extends Model<
   InferAttributes<Brand>,
   InferCreationAttributes<Brand>

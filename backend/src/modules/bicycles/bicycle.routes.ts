@@ -13,6 +13,8 @@ router.get("/eagerly", BicycleController.getAllEagerly);
 
 router.get("/price-greater/:price", BicycleController.getByPriceGreaterThan);
 
+// ORDER MATTERS: specific routes (/eagerly, /price-greater/:price) go BEFORE /:id.
+// If /:id is first, Express reads 'eagerly' as an id.
 router.get("/:id", BicycleController.getById);
 
 router.post("/", BicycleController.create);
@@ -21,4 +23,5 @@ router.put("/:id", BicycleController.update);
 
 router.delete("/:id", BicycleController.delete);
 
+// Do not forget the default export: index.ts imports it and breaks if it is missing.
 export default router;

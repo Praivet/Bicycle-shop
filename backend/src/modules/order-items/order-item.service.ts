@@ -8,6 +8,7 @@ export class OrderItemService {
       throw new Error("Method not implemented.");
     }
 
+    // Service of the join table of the N:M Order <-> Bicycle.
     static async findAll() {
         return OrderItem.findAll({
             order: [["id", "ASC"]],
@@ -31,6 +32,7 @@ export class OrderItemService {
     }
 
     //posibility to update diferents
+    // Receives the instance already loaded by the controller (the 404 check is done there).
     static async update(
         order: OrderItem,
         data: Partial<{

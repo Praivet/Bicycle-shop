@@ -25,6 +25,7 @@ Order.init({
         autoIncrement: true, primaryKey: true
     },
 
+    // FK of 1:N Customer -> Order. Same name as in associations.ts.
     customerId: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,

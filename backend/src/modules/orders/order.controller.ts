@@ -17,6 +17,7 @@ export class OrderController {
     }
   }
 
+  // No params: the values (100 and 20) are fixed in the service. GET /api/orders/cheap-heavy-bicycles.
   static async getByCheapAndHeavyBicycles(
     req: Request,
     res: Response,
@@ -31,6 +32,7 @@ export class OrderController {
     }
   }
 
+  // Route params arrive as strings: convert with Number(). 404 if nothing was found.
   static async getById(
     req: Request,
     res: Response,
@@ -56,6 +58,7 @@ export class OrderController {
   }
 
 
+  // NOTE: there is no route for this handler yet in order.routes.ts (service and controller are ready).
   static async getByCustomerId(
     req: Request,
     res: Response,
@@ -81,6 +84,7 @@ export class OrderController {
   }
 
 
+  // Validate the required fields (400) before calling the service. 201 = created.
   static async create(
     req: Request,
     res: Response,
@@ -113,6 +117,7 @@ export class OrderController {
   }
 
 
+  // Find first (404 if missing), then pass the loaded instance to the service.
   static async update(
     req: Request,
     res: Response,
@@ -140,6 +145,7 @@ export class OrderController {
   }
 
 
+  // Find first (404 if missing), then delete. 204 = success with no body.
   static async delete(
     req: Request,
     res: Response,
